@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, (rigidbody.velocity.y - (gravity * Time.deltaTime)), rigidbody.velocity.z);
         }
-        else
+        else if (rigidbody.velocity.y < 0)
         {
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
         }
