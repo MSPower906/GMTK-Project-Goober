@@ -11,6 +11,10 @@ public class CannonScript : MonoBehaviour
     [SerializeField] private float launchPower;
     #endregion
 
+    private void Start()
+    {
+        rb = GameObject.Find("Body").GetComponent<Rigidbody>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
