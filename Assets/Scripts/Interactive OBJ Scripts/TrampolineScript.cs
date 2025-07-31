@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrampolineScript : MonoBehaviour
 {
     [SerializeField] private float launchPower = 20;
+    [SerializeField] private float maxPower = 40;
     private bool onCoolDown = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +13,24 @@ public class TrampolineScript : MonoBehaviour
         {
             Rigidbody rb = other.gameObject.transform.GetComponentInParent<Rigidbody>();
             onCoolDown = true;
-            rb.AddForce(0, launchPower /* (-rb.velocity.y * 0.4f)*/, 0, ForceMode.Impulse);
+
+            if (rb.velocity.y <= -launchPower && !(rb.velocity.y < -maxPower))
+            {
+                rb.velocity = new Vector3(rb.velocity.x, -rb.velocity.y, rb.velocity.z);
+                Debug.Log("Momentum Carried!");
+            }
+            else if (rb.velocity.y > -launchPower)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, launchPower, rb.velocity.z);
+                Debug.Log("Minimum bounce");
+            }
+
+            if (rb.velocity.y < -maxPower && !(rb.velocity.y > -launchPower))
+            {
+                rb.velocity = new Vector3(rb.velocity.x, maxPower, rb.velocity.z);
+                Debug.Log("Max boost given!");
+            }
+
             StartCoroutine(JumpCooldown());
         }
     }
