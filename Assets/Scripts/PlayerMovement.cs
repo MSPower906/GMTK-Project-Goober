@@ -8,16 +8,29 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10;
     public float jumpPower = 300;
     public float shortHopPower = 50;
+    public float fastFallMultiplier = 2;
+    private float fallMultiplier = 1;
     public float gravity = 9.81f;
     public float drag = 5;
     public float airControl = 10;
     public bool grounded;
+    public bool jumping;
+
+    [Header("Wall Variables")]
+    public bool leftWalled;
+    public bool rightWalled;
 
     [Header("Reference Variables")]
     private Rigidbody rigidbody;
+    public Renderer renderer;
 
     [Header("Momentum Storage")]
     public Vector3 Charge1;
+    public Material DefaultColour;
+    public Material ChargeColour;
+
+    [Header("Debug")]
+    public Vector3 PlayerVelocity;
 
     void Start()
     {
@@ -26,13 +39,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Basic left/right movement/drag
+        PlayerVelocity = rigidbody.velocity;
+
+        //Basic left/right movement
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        if ((Input.GetAxis("Horizontal") > 0.1|| Input.GetAxis("Horizontal") < -0.1) && grounded)
+        //Basically no left input if colliding with left wall or vice versa to prevent wall cling
+        if (Input.GetAxis("Horizontal") > 0.1 && grounded && !rightWalled && Mathf.Abs(rigidbody.velocity.x) < speed)
         {
             rigidbody.velocity = new Vector3(moveHorizontal * speed, rigidbody.velocity.y, rigidbody.velocity.z);
         }
+        else if (Input.GetAxis("Horizontal") < -0.1 && grounded && !leftWalled && Mathf.Abs(rigidbody.velocity.x) < speed)
+        {
+            rigidbody.velocity = new Vector3(moveHorizontal * speed, rigidbody.velocity.y, rigidbody.velocity.z);
+        }
+        //Drag
         else if (grounded)
         {
             if (rigidbody.velocity.x > 0)
@@ -44,9 +65,15 @@ public class PlayerMovement : MonoBehaviour
                 rigidbody.velocity = new Vector3(rigidbody.velocity.x + (drag * Time.deltaTime), rigidbody.velocity.y, rigidbody.velocity.z);
             }
         }
+        //No aerial wall cling/aerial drag
         else
         {
-            if ((rigidbody.velocity.x < speed && Input.GetAxis("Horizontal") > 0.1 || rigidbody.velocity.x > -speed && Input.GetAxis("Horizontal") < -0.1) && !grounded)
+            if (rigidbody.velocity.x > -speed && Input.GetAxis("Horizontal") < -0.1 && !leftWalled && !grounded || Input.GetAxis("Horizontal") > 0.1 && grounded && !leftWalled && Mathf.Abs(rigidbody.velocity.x) > speed)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x + (Input.GetAxis("Horizontal") * Time.deltaTime * airControl), rigidbody.velocity.y, rigidbody.velocity.z);
+            }
+
+            if (rigidbody.velocity.x < speed && Input.GetAxis("Horizontal") > 0.1 && !rightWalled && !grounded || Input.GetAxis("Horizontal") < -0.1 && grounded && !rightWalled && Mathf.Abs(rigidbody.velocity.x) > speed)
             {
                 rigidbody.velocity = new Vector3(rigidbody.velocity.x + (Input.GetAxis("Horizontal") * Time.deltaTime * airControl), rigidbody.velocity.y, rigidbody.velocity.z);
             }
@@ -55,17 +82,43 @@ public class PlayerMovement : MonoBehaviour
         //Gravity
         if (!grounded)
         {
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, (rigidbody.velocity.y - (gravity * Time.deltaTime)), rigidbody.velocity.z);
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, (rigidbody.velocity.y - ((gravity * Time.deltaTime) * fallMultiplier)), rigidbody.velocity.z);
         }
         else if (rigidbody.velocity.y < 0)
         {
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+            if (Input.GetAxis("Vertical") < -0.1 && !jumping)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, -10, rigidbody.velocity.z);
+            }
+            else if (!jumping)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+            }
+        }
+
+        //Fastfall
+        if (Input.GetAxis("Vertical") < -0.1)
+        {
+            fallMultiplier = fastFallMultiplier;
+        }
+        else
+        {
+            fallMultiplier = 1;
         }
 
         //Jump
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            rigidbody.AddForce(0, jumpPower, 0);
+            StartCoroutine(JumpTimer());
+            if (Mathf.Abs(rigidbody.velocity.x) > speed)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, (jumpPower + (Mathf.Abs(rigidbody.velocity.x - speed) / 2)), rigidbody.velocity.z);
+            }
+            else
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpPower, rigidbody.velocity.z);
+            }
+
             grounded = false;
         }
         if (Input.GetButtonUp("Jump") && rigidbody.velocity.y > shortHopPower && !grounded)
@@ -80,12 +133,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 Charge1 = rigidbody.velocity;
                 rigidbody.velocity = new Vector3(0, 0, 0);
-            }
+                renderer.material = ChargeColour;            }
             else if (Charge1 != Vector3.zero)
             {
                 rigidbody.velocity = Charge1;
                 Charge1 = new Vector3(0, 0, 0);
+                renderer.material = DefaultColour;
             }
         }
+    }
+
+    IEnumerator JumpTimer()
+    {
+        jumping = true;
+        yield return new WaitForSeconds(0.1f);
+        jumping = false;
     }
 }

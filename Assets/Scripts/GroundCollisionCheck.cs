@@ -6,7 +6,7 @@ public class GroundCollisionCheck : MonoBehaviour
 {
     public PlayerMovement player;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         player.grounded = true;
     }
