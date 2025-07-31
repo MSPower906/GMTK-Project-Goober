@@ -261,12 +261,14 @@ MonoBehaviour:
   drag: 5
   airControl: 15
   grounded: 0
+  jumping: 0
   leftWalled: 0
   rightWalled: 0
   renderer: {fileID: 4914453776064926939}
   Charge1: {x: 0, y: 0, z: 0}
   DefaultColour: {fileID: 2100000, guid: f571c33d00e5c3b49be5489e1ae161a7, type: 2}
   ChargeColour: {fileID: 2100000, guid: 6f3b761273d407440a59af6d9f2c1e09, type: 2}
+  PlayerVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &7269730727256223034
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +348,7 @@ GameObject:
   - component: {fileID: 1072710139328032913}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
