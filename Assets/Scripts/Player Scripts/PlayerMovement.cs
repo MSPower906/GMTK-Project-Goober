@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 Charge1;
     public Vector3 Charge2;
 
+    [Header("ChargeUI")]
+    public GameObject charge1UI;
+    public GameObject charge2UI;
+
     [Header("Colour Storage")]
     public Material DefaultColour;
     public Material ChargeColour1;
@@ -137,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
             if (rigidbody.velocity != Vector3.zero && Charge1 == Vector3.zero)
             {
                 Charge1 = rigidbody.velocity;
+                SetChargeUI(charge1UI);
                 rigidbody.velocity = new Vector3(0, 0, 0);
 
                 if (Charge2 != Vector3.zero)
@@ -151,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
             else if (Charge1 != Vector3.zero)
             {
                 rigidbody.velocity = Charge1;
+                charge1UI.SetActive(false);
                 Charge1 = new Vector3(0, 0, 0);
                 
                 if (Charge2 != Vector3.zero)
@@ -168,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
             if (rigidbody.velocity != Vector3.zero && Charge2 == Vector3.zero)
             {
                 Charge2 = rigidbody.velocity;
+                SetChargeUI(charge2UI);
                 rigidbody.velocity = new Vector3(0, 0, 0);
 
                 if (Charge1 != Vector3.zero)
@@ -182,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
             else if (Charge2 != Vector3.zero)
             {
                 rigidbody.velocity = Charge2;
+                charge2UI.SetActive(false);
                 Charge2 = new Vector3(0, 0, 0);
 
                 if (Charge1 != Vector3.zero)
@@ -201,5 +209,14 @@ public class PlayerMovement : MonoBehaviour
         jumping = true;
         yield return new WaitForSeconds(0.1f);
         jumping = false;
+    }
+
+    void SetChargeUI(GameObject chargeUI)
+    {
+        chargeUI.SetActive(true);
+
+        Vector2 dir = rigidbody.velocity;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        chargeUI.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
