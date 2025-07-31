@@ -17,18 +17,18 @@ public class TrampolineScript : MonoBehaviour
             if (rb.velocity.y <= -launchPower && !(rb.velocity.y < -maxPower))
             {
                 rb.velocity = new Vector3(rb.velocity.x, -rb.velocity.y, rb.velocity.z);
-                Debug.Log("Momentum Carried!");
+                
             }
             else if (rb.velocity.y > -launchPower)
             {
                 rb.velocity = new Vector3(rb.velocity.x, launchPower, rb.velocity.z);
-                Debug.Log("Minimum bounce");
+      
             }
 
             if (rb.velocity.y < -maxPower && !(rb.velocity.y > -launchPower))
             {
                 rb.velocity = new Vector3(rb.velocity.x, maxPower, rb.velocity.z);
-                Debug.Log("Max boost given!");
+                
             }
 
             StartCoroutine(JumpCooldown());
