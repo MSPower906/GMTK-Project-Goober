@@ -85,7 +85,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.7, z: 1}
+  m_Size: {x: 0.1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2472954554059117684
 MonoBehaviour:
@@ -265,10 +265,14 @@ MonoBehaviour:
   jumping: 0
   leftWalled: 0
   rightWalled: 0
+  rigidbody: {fileID: 0}
   renderer: {fileID: 4914453776064926939}
   Charge1: {x: 0, y: 0, z: 0}
+  Charge2: {x: 0, y: 0, z: 0}
   DefaultColour: {fileID: 2100000, guid: f571c33d00e5c3b49be5489e1ae161a7, type: 2}
-  ChargeColour: {fileID: 2100000, guid: 6f3b761273d407440a59af6d9f2c1e09, type: 2}
+  ChargeColour1: {fileID: 2100000, guid: 6f3b761273d407440a59af6d9f2c1e09, type: 2}
+  ChargeColour2: {fileID: 2100000, guid: 57549901fd9604242a8c59082c55c675, type: 2}
+  ChargeColourBoth: {fileID: 2100000, guid: 6f1da34b99bae9344a6a4dcc0b936bd4, type: 2}
   PlayerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2706068336484263714
 MonoBehaviour:
@@ -282,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3cb972c15d86d4f8f8a69a5fc8fd3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Checkpoint: {x: 0, y: 0, z: 0}
+  currentHealth: 2
 --- !u!1 &7269730727256223034
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +340,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.1, y: 0.7, z: 1}
+  m_Size: {x: 0.1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5972581901250399216
 MonoBehaviour:

@@ -9,25 +9,31 @@ public class WallCollision : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        if (LeftWall)
+        if (collision.gameObject.tag == "Ground Check")
         {
-            player.leftWalled = true;
-        }
-        else
-        {
-            player.rightWalled = true;
+            if (LeftWall)
+            {
+                player.leftWalled = true;
+            }
+            else
+            {
+                player.rightWalled = true;
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (LeftWall)
+        if (collision.gameObject.tag == "Ground Check")
         {
-            player.leftWalled = false;
-        }
-        else
-        {
-            player.rightWalled = false;
+            if (LeftWall)
+            {
+                player.leftWalled = false;
+            }
+            else
+            {
+                player.rightWalled = false;
+            }
         }
     }
 }

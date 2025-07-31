@@ -8,11 +8,17 @@ public class GroundCollisionCheck : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        player.grounded = true;
+        if (collision.gameObject.tag == "Ground Check")
+        {
+            player.grounded = true;
+        }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        player.grounded = false;
+        if (collision.gameObject.tag == "Ground Check")
+        {
+            player.grounded = false;
+        }
     }
 }

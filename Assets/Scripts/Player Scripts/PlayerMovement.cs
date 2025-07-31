@@ -21,14 +21,18 @@ public class PlayerMovement : MonoBehaviour
     public bool rightWalled;
 
     [Header("Reference Variables")]
-    private Rigidbody rigidbody;
+    public Rigidbody rigidbody;
     public Renderer renderer;
 
     [Header("Momentum Storage")]
     public Vector3 Charge1;
     public Vector3 Charge2;
+
+    [Header("Colour Storage")]
     public Material DefaultColour;
-    public Material ChargeColour;
+    public Material ChargeColour1;
+    public Material ChargeColour2;
+    public Material ChargeColourBoth;
 
     [Header("Debug")]
     public Vector3 PlayerVelocity;
@@ -122,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
             grounded = false;
         }
-        if (Input.GetButtonUp("Jump") && rigidbody.velocity.y > shortHopPower && !grounded)
+        if (Input.GetButtonUp("Jump") && rigidbody.velocity.y > shortHopPower && !grounded || Input.GetButtonUp("Jump") && rigidbody.velocity.y > shortHopPower && jumping)
         {
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, shortHopPower, rigidbody.velocity.z);
         }
@@ -134,12 +138,29 @@ public class PlayerMovement : MonoBehaviour
             {
                 Charge1 = rigidbody.velocity;
                 rigidbody.velocity = new Vector3(0, 0, 0);
-                renderer.material = ChargeColour;            }
+
+                if (Charge2 != Vector3.zero)
+                {
+                    renderer.material = ChargeColourBoth;
+                }
+                else
+                {
+                    renderer.material = ChargeColour1;
+                }
+            }
             else if (Charge1 != Vector3.zero)
             {
                 rigidbody.velocity = Charge1;
                 Charge1 = new Vector3(0, 0, 0);
-                renderer.material = DefaultColour;
+                
+                if (Charge2 != Vector3.zero)
+                {
+                    renderer.material = ChargeColour2;
+                }
+                else
+                {
+                    renderer.material = DefaultColour;
+                }
             }
         }
         if (Input.GetButtonDown("Fire3"))
@@ -148,13 +169,29 @@ public class PlayerMovement : MonoBehaviour
             {
                 Charge2 = rigidbody.velocity;
                 rigidbody.velocity = new Vector3(0, 0, 0);
-                renderer.material = ChargeColour;
+
+                if (Charge1 != Vector3.zero)
+                {
+                    renderer.material = ChargeColourBoth;
+                }
+                else
+                {
+                    renderer.material = ChargeColour2;
+                }
             }
             else if (Charge2 != Vector3.zero)
             {
                 rigidbody.velocity = Charge2;
                 Charge2 = new Vector3(0, 0, 0);
-                renderer.material = DefaultColour;
+
+                if (Charge1 != Vector3.zero)
+                {
+                    renderer.material = ChargeColour1;
+                }
+                else
+                {
+                    renderer.material = DefaultColour;
+                }
             }
         }
     }
