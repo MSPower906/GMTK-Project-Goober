@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Momentum Storage")]
     public Vector3 Charge1;
+    public Vector3 Charge2;
     public Material DefaultColour;
     public Material ChargeColour;
 
@@ -138,6 +139,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidbody.velocity = Charge1;
                 Charge1 = new Vector3(0, 0, 0);
+                renderer.material = DefaultColour;
+            }
+        }
+        if (Input.GetButtonDown("Fire3"))
+        {
+            if (rigidbody.velocity != Vector3.zero && Charge2 == Vector3.zero)
+            {
+                Charge2 = rigidbody.velocity;
+                rigidbody.velocity = new Vector3(0, 0, 0);
+                renderer.material = ChargeColour;
+            }
+            else if (Charge2 != Vector3.zero)
+            {
+                rigidbody.velocity = Charge2;
+                Charge2 = new Vector3(0, 0, 0);
                 renderer.material = DefaultColour;
             }
         }
