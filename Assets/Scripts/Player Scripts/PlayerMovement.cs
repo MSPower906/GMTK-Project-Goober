@@ -29,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 Charge2;
 
     [Header("ChargeUI")]
+    public int ChargeAmount = 2;
     public GameObject charge1UI;
     public GameObject charge2UI;
 
+
     [Header("Colour Storage")]
+    public Renderer Model;
     public Material DefaultColour;
     public Material ChargeColour1;
     public Material ChargeColour2;
@@ -136,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Momentum Storage
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && ChargeAmount >= 1)
         {
             if (rigidbody.velocity != Vector3.zero && Charge1 == Vector3.zero)
             {
@@ -146,11 +149,11 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Charge2 != Vector3.zero)
                 {
-                    renderer.material = ChargeColourBoth;
+                    Model.material = ChargeColourBoth;
                 }
                 else
                 {
-                    renderer.material = ChargeColour1;
+                    Model.material = ChargeColour1;
                 }
             }
             else if (Charge1 != Vector3.zero)
@@ -161,15 +164,15 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (Charge2 != Vector3.zero)
                 {
-                    renderer.material = ChargeColour2;
+                    Model.material = ChargeColour2;
                 }
                 else
                 {
-                    renderer.material = DefaultColour;
+                    Model.material = DefaultColour;
                 }
             }
         }
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3") && ChargeAmount >= 2)
         {
             if (rigidbody.velocity != Vector3.zero && Charge2 == Vector3.zero)
             {
@@ -179,11 +182,11 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Charge1 != Vector3.zero)
                 {
-                    renderer.material = ChargeColourBoth;
+                    Model.material = ChargeColourBoth;
                 }
                 else
                 {
-                    renderer.material = ChargeColour2;
+                    Model.material = ChargeColour2;
                 }
             }
             else if (Charge2 != Vector3.zero)
@@ -194,11 +197,11 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Charge1 != Vector3.zero)
                 {
-                    renderer.material = ChargeColour1;
+                    Model.material = ChargeColour1;
                 }
                 else
                 {
-                    renderer.material = DefaultColour;
+                    Model.material = DefaultColour;
                 }
             }
         }

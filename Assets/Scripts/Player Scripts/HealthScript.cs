@@ -10,6 +10,10 @@ public class HealthScript : MonoBehaviour
     public float maxHealth = 2;
     bool invuln;
 
+    public Renderer mesh;
+
+    public ControlsHUDTextManager HealthHUD;
+
     private void Start()
     {
         Checkpoint = this.transform.position;
@@ -33,6 +37,7 @@ public class HealthScript : MonoBehaviour
         }
 
         StartCoroutine(InvulnCooldown());
+        HealthHUD.TriggerTimer();
     }
 
     public void Respawn()
@@ -45,12 +50,12 @@ public class HealthScript : MonoBehaviour
 
     IEnumerator InvulnCooldown()
     {
-        GetComponent<Renderer>().material.color = new Color(GetComponent<Renderer>().material.color.r, GetComponent<Renderer>().material.color.g, GetComponent<Renderer>().material.color.b, 0.25f);
+        mesh.material.color = new Color(mesh.material.color.r, mesh.material.color.g, mesh.material.color.b, 0.25f);
 
         //Prevents instant player death from multiple collisions
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
 
-        GetComponent<Renderer>().material.color = new Color(GetComponent<Renderer>().material.color.r, GetComponent<Renderer>().material.color.g, GetComponent<Renderer>().material.color.b, 1);
+        mesh.material.color = new Color(mesh.material.color.r, mesh.material.color.g, mesh.material.color.b, 1);
 
         invuln = false;
     }

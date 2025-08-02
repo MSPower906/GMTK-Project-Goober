@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191016c2ebf71cd4da05ad1078531ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FlagMaterial: {fileID: 2100000, guid: 9143877b3ba424044827a18fe2537452, type: 2}
+  Flag: {fileID: 8291224434049200841}
 --- !u!1 &3499507284777331239
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +183,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.30070576, w: 0.953717}
   m_LocalPosition: {x: -0.065, y: 0.4, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.5, z: 0.05}
+  m_LocalScale: {x: -0.8, y: 0.5, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6817094966470175551}
@@ -216,7 +218,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2e0b11ec1b6adb742ae1b20d1c539622, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -26,4 +26,16 @@ public class ControlsHUDTextManager : MonoBehaviour
 
       
     }
+
+    public void TriggerTimer()
+    {
+        StartCoroutine(HealthUITimer());
+    }
+
+    IEnumerator HealthUITimer()
+    {
+        Health.color = new Color(Health.color.r, Health.color.g, Health.color.b, 1);
+        yield return new WaitForSeconds(3f);
+        Health.color = new Color(Health.color.r, Health.color.g, Health.color.b, 0);
+    }
 }
