@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1253114535517939566}
   serializedVersion: 2
   m_LocalRotation: {x: -0.17733338, y: 0.36957029, z: 0.25250906, w: 0.8764759}
-  m_LocalPosition: {x: 9.55, y: -0.89, z: -0.011}
+  m_LocalPosition: {x: 1.068, y: 1.501, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4868,7 +4868,7 @@ Transform:
   m_GameObject: {fileID: 1703501505721940128}
   serializedVersion: 2
   m_LocalRotation: {x: -0.50191575, y: 0.36407638, z: -0.26344207, w: 0.7390043}
-  m_LocalPosition: {x: 9.55, y: -0.89, z: -0.011}
+  m_LocalPosition: {x: 1.0679998, y: 1.501, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4891,7 +4891,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9745,7 +9745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f4b267af963072542a1897f7a63aa12e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9794,7 +9794,7 @@ Transform:
   m_GameObject: {fileID: 4376701088528620678}
   serializedVersion: 2
   m_LocalRotation: {x: -0.64597285, y: 0.28760928, z: -0.28760928, w: 0.64597285}
-  m_LocalPosition: {x: 9.55, y: -0.89, z: -0.011}
+  m_LocalPosition: {x: 1.0679998, y: 1.501, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9817,7 +9817,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14671,7 +14671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 215ecb6d3e7e78a43861f9b90ded687e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14801,7 +14801,7 @@ Transform:
   m_GameObject: {fileID: 8624420122165383064}
   serializedVersion: 2
   m_LocalRotation: {x: -0.41695404, y: 0.3619051, z: -0.18564224, w: 0.81284136}
-  m_LocalPosition: {x: 9.55, y: -0.89, z: -0.011}
+  m_LocalPosition: {x: 1.0679998, y: 1.501, z: -0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14824,7 +14824,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
