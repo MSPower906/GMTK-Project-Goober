@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Debug")]
     public Vector3 PlayerVelocity;
+    public GameObject pauseMenu;
 
     void Start()
     {
@@ -205,6 +206,15 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+
+
     }
 
     IEnumerator JumpTimer()

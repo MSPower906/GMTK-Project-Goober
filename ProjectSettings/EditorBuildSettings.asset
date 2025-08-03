@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Levels/Level 1.unity
-    guid: d6f5b4e2cb5212946b169626f425195c
+    path: Assets/Scenes/Levels/Main Menu.unity
+    guid: 6acf456cfe23a1e4eb4006a563229b1d
   - enabled: 1
-    path: Assets/Scenes/Josh Scene.unity
-    guid: cfa0f0c461550344586dce78bee3a9eb
+    path: Assets/Scenes/Levels/Level 1.unity
+    guid: 31c963cb88a4b864a9a227e5a10081cf
+  - enabled: 1
+    path: Assets/Scenes/Levels/End Screen.unity
+    guid: ba4adb9a6d8d0ce429fa0f47c1abd164
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
