@@ -9,6 +9,7 @@ public class CannonScript : MonoBehaviour
     [SerializeField] private GameObject barrel;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float launchPower;
+    [SerializeField] private GameObject[] vfx;
     #endregion
 
     private void Start()
@@ -47,5 +48,10 @@ public class CannonScript : MonoBehaviour
         inRange = false;
         rb.gameObject.transform.position = gameObject.transform.position; 
         rb.velocity = barrel.transform.up * launchPower;
+
+        for (int i = 0; i < vfx.Length; i++)
+        {
+            vfx[i].GetComponent<ParticleSystem>().Play();
+        }
     }
 }
